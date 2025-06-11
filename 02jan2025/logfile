@@ -1,0 +1,460 @@
+02jan2025_bias1.fits: Jun 11 17:04 Trim data section is [15:1325,15:385]
+02jan2025_bias2.fits: Jun 11 17:04 Trim data section is [15:1325,15:385]
+02jan2025_bias3.fits: Jun 11 17:04 Trim data section is [15:1325,15:385]
+02jan2025_bias4.fits: Jun 11 17:04 Trim data section is [15:1325,15:385]
+02jan2025_bias5.fits: Jun 11 17:04 Trim data section is [15:1325,15:385]
+02jan2025_bias6.fits: Jun 11 17:04 Trim data section is [15:1325,15:385]
+02jan2025_comp1.fits: Jun 11 17:04 Trim data section is [15:1325,15:385]
+02jan2025_comp2.fits: Jun 11 17:04 Trim data section is [15:1325,15:385]
+02jan2025_comp3.fits: Jun 11 17:04 Trim data section is [15:1325,15:385]
+02jan2025_comp4.fits: Jun 11 17:04 Trim data section is [15:1325,15:385]
+02jan2025_comp5.fits: Jun 11 17:04 Trim data section is [15:1325,15:385]
+02jan2025_comp6.fits: Jun 11 17:04 Trim data section is [15:1325,15:385]
+02jan2025_dft1.fits: Jun 11 17:04 Trim data section is [15:1325,15:385]
+02jan2025_dft2.fits: Jun 11 17:04 Trim data section is [15:1325,15:385]
+02jan2025_dft3.fits: Jun 11 17:04 Trim data section is [15:1325,15:385]
+02jan2025_obj1.fits: Jun 11 17:04 Trim data section is [15:1325,15:385]
+02jan2025_obj2.fits: Jun 11 17:04 Trim data section is [15:1325,15:385]
+02jan2025_obj3.fits: Jun 11 17:04 Trim data section is [15:1325,15:385]
+05jan2025_Comp1.fits: Jun 11 17:04 Trim data section is [15:1325,15:385]
+05jan2025_Comp2.fits: Jun 11 17:04 Trim data section is [15:1325,15:385]
+05jan2025_bias1.fits: Jun 11 17:04 Trim data section is [15:1325,15:385]
+05jan2025_bias2.fits: Jun 11 17:04 Trim data section is [15:1325,15:385]
+
+Jun 11 17:04: IMCOMBINE
+  combine = average, scale = none, zero = none, weight = none
+  reject = minmax, nlow = 0, nhigh = 1
+  blank = 0.
+                Images 
+  02jan2025_bias1_t.fits
+  02jan2025_bias2_t.fits
+  02jan2025_bias3_t.fits
+  02jan2025_bias4_t.fits
+  02jan2025_bias5_t.fits
+  02jan2025_bias6_t.fits
+
+  Output image = master_bias.fits, ncombine = 6
+02jan2025_obj1_t.fits: Jun 11 17:04 Zero level correction image is master_bias.fits
+02jan2025_obj2_t.fits: Jun 11 17:04 Zero level correction image is master_bias.fits
+02jan2025_obj3_t.fits: Jun 11 17:04 Zero level correction image is master_bias.fits
+02jan2025_comp1_t.fits: Jun 11 17:04 Zero level correction image is master_bias.fits
+02jan2025_comp2_t.fits: Jun 11 17:04 Zero level correction image is master_bias.fits
+02jan2025_comp3_t.fits: Jun 11 17:04 Zero level correction image is master_bias.fits
+02jan2025_comp4_t.fits: Jun 11 17:04 Zero level correction image is master_bias.fits
+02jan2025_comp5_t.fits: Jun 11 17:04 Zero level correction image is master_bias.fits
+02jan2025_comp6_t.fits: Jun 11 17:04 Zero level correction image is master_bias.fits
+02jan2025_dft1_t.fits: Jun 11 17:04 Zero level correction image is master_bias.fits
+02jan2025_dft2_t.fits: Jun 11 17:04 Zero level correction image is master_bias.fits
+02jan2025_dft3_t.fits: Jun 11 17:04 Zero level correction image is master_bias.fits
+
+Jun 11 17:05: IMCOMBINE
+  combine = average, scale = mode, zero = none, weight = none
+  reject = avsigclip, mclip = yes, nkeep = 1
+  lsigma = 3., hsigma = 3.
+  blank = 1.
+                Images     Mode  Scale
+  02jan2025_dft1_tb.fits   218.2  1.010
+  02jan2025_dft2_tb.fits    220.  1.002
+  02jan2025_dft3_tb.fits   222.8  0.989
+
+  Output image = master_flat.fits, ncombine = 3
+02jan2025_obj1_tb.fits: Jun 11 17:05 Flat field image is nmaster_flat.fits with scale=1.
+02jan2025_obj2_tb.fits: Jun 11 17:05 Flat field image is nmaster_flat.fits with scale=1.
+02jan2025_obj3_tb.fits: Jun 11 17:05 Flat field image is nmaster_flat.fits with scale=1.
+Jun 11 17:05: DATABASE  - 1 apertures read for 02jan2025_obj1_tbf from database
+Jun 11 17:05: RECENTER  - 1 apertures shifted by 0.02 for 02jan2025_obj1_tbf.
+Jun 11 17:05: APRESIZE  - 1 apertures resized for 02jan2025_obj1_tbf (-3.91, 4.16)
+Jun 11 17:05: EDIT - 1 apertures edited for 02jan2025_obj1_tbf
+Jun 11 17:05: TRACE - 1 apertures traced in 02jan2025_obj1_tbf.
+Jun 11 17:05: DATABASE - 1 apertures for 02jan2025_obj1_tbf written to database
+Jun 11 17:05: EXTRACT: 13 pixels rejected for profile from aperture 1
+Jun 11 17:05: EXTRACT: Aperture 1 variance spectrum bias factor is 1.000031
+Jun 11 17:05: EXTRACT: 6 pixels rejected from aperture 1
+Jun 11 17:05: EXTRACT - Aperture 1 from 02jan2025_obj1_tbf --> 02jan2025_obj1_tbf.ms
+Jun 11 17:05: DATABASE  - 1 apertures read for 02jan2025_obj2_tbf from database
+Jun 11 17:05: RECENTER  - 1 apertures shifted by -0.01 for 02jan2025_obj2_tbf.
+Jun 11 17:05: APRESIZE  - 1 apertures resized for 02jan2025_obj2_tbf (-4.22, 3.88)
+Jun 11 17:05: EDIT - 1 apertures edited for 02jan2025_obj2_tbf
+Jun 11 17:05: TRACE - 1 apertures traced in 02jan2025_obj2_tbf.
+Jun 11 17:05: DATABASE - 1 apertures for 02jan2025_obj2_tbf written to database
+Jun 11 17:05: EXTRACT: 57 pixels rejected for profile from aperture 1
+Jun 11 17:05: EXTRACT: Aperture 1 variance spectrum bias factor is 1.001015
+Jun 11 17:05: EXTRACT: 24 pixels rejected from aperture 1
+Jun 11 17:05: EXTRACT - Aperture 1 from 02jan2025_obj2_tbf --> 02jan2025_obj2_tbf.ms
+Jun 11 17:06: DATABASE  - 1 apertures read for 02jan2025_obj3_tbf from database
+Jun 11 17:06: RECENTER  - 1 apertures shifted by -0.01 for 02jan2025_obj3_tbf.
+Jun 11 17:06: APRESIZE  - 1 apertures resized for 02jan2025_obj3_tbf (-3.34, 3.49)
+Jun 11 17:06: EDIT - 1 apertures edited for 02jan2025_obj3_tbf
+Jun 11 17:06: TRACE - 1 apertures traced in 02jan2025_obj3_tbf.
+Jun 11 17:06: DATABASE - 1 apertures for 02jan2025_obj3_tbf written to database
+Jun 11 17:06: EXTRACT: 1 pixels rejected for profile from aperture 1
+Jun 11 17:06: EXTRACT: Aperture 1 variance spectrum bias factor is 0.9999936
+Jun 11 17:06: EXTRACT: 0 pixels rejected from aperture 1
+Jun 11 17:06: EXTRACT - Aperture 1 from 02jan2025_obj3_tbf --> 02jan2025_obj3_tbf.ms
+Jun 11 17:06: FIND - 1 apertures found for 02jan2025_comp1_tb
+Jun 11 17:06: APRESIZE  - 1 apertures resized for 02jan2025_comp1_tb (-1.81, 2.78)
+Jun 11 17:06: EDIT - 1 apertures edited for 02jan2025_comp1_tb
+Jun 11 17:06: TRACE - Trace of aperture 1 in 02jan2025_comp1_tb lost at column 725.
+Jun 11 17:06: TRACE - Trace of aperture 1 in 02jan2025_comp1_tb recovered at column 735.
+Jun 11 17:06: TRACE - Trace of aperture 1 in 02jan2025_comp1_tb lost at column 755.
+Jun 11 17:06: TRACE - Trace of aperture 1 in 02jan2025_comp1_tb recovered at column 765.
+Jun 11 17:06: TRACE - Trace of aperture 1 in 02jan2025_comp1_tb lost at column 805.
+Jun 11 17:06: TRACE - Trace of aperture 1 in 02jan2025_comp1_tb lost at column 815.
+Jun 11 17:06: TRACE - Trace of aperture 1 in 02jan2025_comp1_tb lost at column 825.
+Jun 11 17:06: TRACE - Trace of aperture 1 in 02jan2025_comp1_tb lost at column 641.
+Jun 11 17:06: TRACE - Trace of aperture 1 in 02jan2025_comp1_tb lost at column 631.
+Jun 11 17:06: TRACE - Trace of aperture 1 in 02jan2025_comp1_tb recovered at column 621.
+Jun 11 17:06: TRACE - Trace of aperture 1 in 02jan2025_comp1_tb lost at column 611.
+Jun 11 17:06: TRACE - Trace of aperture 1 in 02jan2025_comp1_tb lost at column 601.
+Jun 11 17:06: TRACE - Trace of aperture 1 in 02jan2025_comp1_tb lost at column 591.
+Jun 11 17:06: TRACE - 1 apertures traced in 02jan2025_comp1_tb.
+Jun 11 17:06: DATABASE - 1 apertures for 02jan2025_comp1_tb written to database
+Jun 11 17:06: EXTRACT: 7 pixels rejected for profile from aperture 1
+Jun 11 17:06: EXTRACT: Aperture 1 variance spectrum bias factor is 1.066917
+Jun 11 17:06: EXTRACT: 5 pixels rejected from aperture 1
+Jun 11 17:06: EXTRACT - Aperture 1 from 02jan2025_comp1_tb --> 02jan2025_comp1_tb.ms
+Jun 11 17:06: DATABASE  - 1 apertures read for 02jan2025_comp1_tb from database
+Jun 11 17:06: RECENTER  - 1 apertures shifted by 1.64 for 02jan2025_comp1_tb.
+Jun 11 17:06: APRESIZE  - 1 apertures resized for 02jan2025_comp1_tb (-1.81, 2.78)
+Jun 11 17:06: EDIT - 1 apertures edited for 02jan2025_comp1_tb
+Jun 11 17:06: TRACE - Trace of aperture 1 in 02jan2025_comp1_tb lost at column 685.
+Jun 11 17:06: TRACE - Trace of aperture 1 in 02jan2025_comp1_tb lost at column 695.
+Jun 11 17:06: TRACE - Trace of aperture 1 in 02jan2025_comp1_tb lost at column 705.
+Jun 11 17:06: TRACE - Trace of aperture 1 in 02jan2025_comp1_tb lost at column 601.
+Jun 11 17:06: TRACE - Trace of aperture 1 in 02jan2025_comp1_tb recovered at column 591.
+Jun 11 17:06: TRACE - Trace of aperture 1 in 02jan2025_comp1_tb lost at column 581.
+Jun 11 17:06: TRACE - Trace of aperture 1 in 02jan2025_comp1_tb lost at column 571.
+Jun 11 17:06: TRACE - Trace of aperture 1 in 02jan2025_comp1_tb recovered at column 561.
+Jun 11 17:06: TRACE - Trace of aperture 1 in 02jan2025_comp1_tb lost at column 511.
+Jun 11 17:06: TRACE - Trace of aperture 1 in 02jan2025_comp1_tb lost at column 501.
+Jun 11 17:06: TRACE - Trace of aperture 1 in 02jan2025_comp1_tb recovered at column 491.
+Jun 11 17:06: TRACE - Trace of aperture 1 in 02jan2025_comp1_tb lost at column 441.
+Jun 11 17:06: TRACE - Trace of aperture 1 in 02jan2025_comp1_tb lost at column 431.
+Jun 11 17:06: TRACE - Trace of aperture 1 in 02jan2025_comp1_tb lost at column 421.
+Jun 11 17:06: TRACE - 1 apertures traced in 02jan2025_comp1_tb.
+Jun 11 17:06: DATABASE - 1 apertures for 02jan2025_comp1_tb written to database
+Jun 11 17:06: EXTRACT: 74 pixels rejected for profile from aperture 1
+Jun 11 17:06: EXTRACT: Aperture 1 variance spectrum bias factor is 1.095881
+Jun 11 17:06: EXTRACT: 19 pixels rejected from aperture 1
+Jun 11 17:07: EXTRACT - Aperture 1 from 02jan2025_comp1_tb --> 02jan2025_comp1_tb.ms
+Jun 11 17:07: DATABASE  - 1 apertures read for 02jan2025_comp1_tb from database
+Jun 11 17:07: RECENTER  - 1 apertures shifted by 0.82 for 02jan2025_comp1_tb.
+Jun 11 17:07: APRESIZE  - 1 apertures resized for 02jan2025_comp1_tb (-3.74, 2.26)
+Jun 11 17:07: EDIT - 1 apertures edited for 02jan2025_comp1_tb
+Jun 11 17:07: TRACE - Trace of aperture 1 in 02jan2025_comp1_tb lost at column 685.
+Jun 11 17:07: TRACE - Trace of aperture 1 in 02jan2025_comp1_tb lost at column 695.
+Jun 11 17:07: TRACE - Trace of aperture 1 in 02jan2025_comp1_tb lost at column 705.
+Jun 11 17:07: TRACE - Trace of aperture 1 in 02jan2025_comp1_tb lost at column 601.
+Jun 11 17:07: TRACE - Trace of aperture 1 in 02jan2025_comp1_tb recovered at column 591.
+Jun 11 17:07: TRACE - Trace of aperture 1 in 02jan2025_comp1_tb lost at column 581.
+Jun 11 17:07: TRACE - Trace of aperture 1 in 02jan2025_comp1_tb lost at column 571.
+Jun 11 17:07: TRACE - Trace of aperture 1 in 02jan2025_comp1_tb recovered at column 561.
+Jun 11 17:07: TRACE - Trace of aperture 1 in 02jan2025_comp1_tb lost at column 511.
+Jun 11 17:07: TRACE - Trace of aperture 1 in 02jan2025_comp1_tb lost at column 501.
+Jun 11 17:07: TRACE - Trace of aperture 1 in 02jan2025_comp1_tb recovered at column 491.
+Jun 11 17:07: TRACE - Trace of aperture 1 in 02jan2025_comp1_tb lost at column 441.
+Jun 11 17:07: TRACE - Trace of aperture 1 in 02jan2025_comp1_tb lost at column 431.
+Jun 11 17:07: TRACE - Trace of aperture 1 in 02jan2025_comp1_tb lost at column 421.
+Jun 11 17:08: TRACE - 1 apertures traced in 02jan2025_comp1_tb.
+Jun 11 17:08: DATABASE - 1 apertures for 02jan2025_comp1_tb written to database
+Jun 11 17:08: EXTRACT: 60 pixels rejected for profile from aperture 1
+Jun 11 17:08: EXTRACT: WARNING - Aperture 1:
+Jun 11 17:08:    Total variance weighted spectrum flux is -277979.1
+Jun 11 17:08:    Total unweighted spectrum flux is 404475.4
+Jun 11 17:08:    Variance spectrum bias factor ignored
+Jun 11 17:08: EXTRACT: 4 pixels rejected from aperture 1
+Jun 11 17:08: EXTRACT - Aperture 1 from 02jan2025_comp1_tb --> 02jan2025_comp1_tb.ms
+Jun 11 17:08: DATABASE  - 1 apertures read for 02jan2025_comp1_tb from database
+Jun 11 17:08: RECENTER  - 1 apertures shifted by 0.82 for 02jan2025_comp1_tb.
+Jun 11 17:08: APRESIZE  - 1 apertures resized for 02jan2025_comp1_tb (-3.74, 2.26)
+Jun 11 17:08: EDIT - 1 apertures edited for 02jan2025_comp1_tb
+Jun 11 17:08: TRACE - Trace of aperture 1 in 02jan2025_comp1_tb lost at column 685.
+Jun 11 17:08: TRACE - Trace of aperture 1 in 02jan2025_comp1_tb lost at column 695.
+Jun 11 17:08: TRACE - Trace of aperture 1 in 02jan2025_comp1_tb lost at column 705.
+Jun 11 17:08: TRACE - Trace of aperture 1 in 02jan2025_comp1_tb lost at column 601.
+Jun 11 17:08: TRACE - Trace of aperture 1 in 02jan2025_comp1_tb recovered at column 591.
+Jun 11 17:08: TRACE - Trace of aperture 1 in 02jan2025_comp1_tb lost at column 581.
+Jun 11 17:08: TRACE - Trace of aperture 1 in 02jan2025_comp1_tb lost at column 571.
+Jun 11 17:08: TRACE - Trace of aperture 1 in 02jan2025_comp1_tb recovered at column 561.
+Jun 11 17:08: TRACE - Trace of aperture 1 in 02jan2025_comp1_tb lost at column 511.
+Jun 11 17:08: TRACE - Trace of aperture 1 in 02jan2025_comp1_tb lost at column 501.
+Jun 11 17:08: TRACE - Trace of aperture 1 in 02jan2025_comp1_tb recovered at column 491.
+Jun 11 17:08: TRACE - Trace of aperture 1 in 02jan2025_comp1_tb lost at column 441.
+Jun 11 17:08: TRACE - Trace of aperture 1 in 02jan2025_comp1_tb lost at column 431.
+Jun 11 17:08: TRACE - Trace of aperture 1 in 02jan2025_comp1_tb lost at column 421.
+Jun 11 17:08: TRACE - 1 apertures traced in 02jan2025_comp1_tb.
+Jun 11 17:08: DATABASE - 1 apertures for 02jan2025_comp1_tb written to database
+Jun 11 17:08: EXTRACT: 123 pixels rejected for profile from aperture 1
+Jun 11 17:08: EXTRACT: WARNING - Aperture 1:
+Jun 11 17:08:    Total variance weighted spectrum flux is 5098681.
+Jun 11 17:08:    Total unweighted spectrum flux is 488670.9
+Jun 11 17:08: EXTRACT: Aperture 1 variance spectrum bias factor is 0.09584261
+Jun 11 17:08: EXTRACT: 109 pixels rejected from aperture 1
+Jun 11 17:08: EXTRACT - Aperture 1 from 02jan2025_comp1_tb --> 02jan2025_comp1_tb.ms
+Jun 11 17:08: DATABASE  - 1 apertures read for 02jan2025_comp1_tb from database
+Jun 11 17:08: RECENTER  - 1 apertures shifted by 0.83 for 02jan2025_comp1_tb.
+Jun 11 17:08: APRESIZE  - 1 apertures resized for 02jan2025_comp1_tb (-3.74, 2.26)
+Jun 11 17:09: EDIT - 1 apertures edited for 02jan2025_comp1_tb
+Jun 11 17:09: TRACE - Trace of aperture 1 in 02jan2025_comp1_tb lost at column 725.
+Jun 11 17:09: TRACE - Trace of aperture 1 in 02jan2025_comp1_tb lost at column 735.
+Jun 11 17:09: TRACE - Trace of aperture 1 in 02jan2025_comp1_tb recovered at column 745.
+Jun 11 17:09: TRACE - Trace of aperture 1 in 02jan2025_comp1_tb lost at column 765.
+Jun 11 17:09: TRACE - Trace of aperture 1 in 02jan2025_comp1_tb recovered at column 775.
+Jun 11 17:09: TRACE - Trace of aperture 1 in 02jan2025_comp1_tb lost at column 795.
+Jun 11 17:09: TRACE - Trace of aperture 1 in 02jan2025_comp1_tb recovered at column 805.
+Jun 11 17:09: TRACE - Trace of aperture 1 in 02jan2025_comp1_tb lost at column 825.
+Jun 11 17:09: TRACE - Trace of aperture 1 in 02jan2025_comp1_tb lost at column 835.
+Jun 11 17:09: TRACE - Trace of aperture 1 in 02jan2025_comp1_tb lost at column 845.
+Jun 11 17:09: TRACE - Trace of aperture 1 in 02jan2025_comp1_tb lost at column 611.
+Jun 11 17:09: TRACE - Trace of aperture 1 in 02jan2025_comp1_tb recovered at column 601.
+Jun 11 17:09: TRACE - Trace of aperture 1 in 02jan2025_comp1_tb lost at column 581.
+Jun 11 17:09: TRACE - Trace of aperture 1 in 02jan2025_comp1_tb recovered at column 571.
+Jun 11 17:09: TRACE - Trace of aperture 1 in 02jan2025_comp1_tb lost at column 541.
+Jun 11 17:09: TRACE - Trace of aperture 1 in 02jan2025_comp1_tb lost at column 531.
+Jun 11 17:09: TRACE - Trace of aperture 1 in 02jan2025_comp1_tb recovered at column 521.
+Jun 11 17:09: TRACE - Trace of aperture 1 in 02jan2025_comp1_tb lost at column 401.
+Jun 11 17:09: TRACE - Trace of aperture 1 in 02jan2025_comp1_tb recovered at column 391.
+Jun 11 17:09: TRACE - Trace of aperture 1 in 02jan2025_comp1_tb lost at column 331.
+Jun 11 17:09: TRACE - Trace of aperture 1 in 02jan2025_comp1_tb lost at column 321.
+Jun 11 17:09: TRACE - Trace of aperture 1 in 02jan2025_comp1_tb recovered at column 311.
+Jun 11 17:09: TRACE - Trace of aperture 1 in 02jan2025_comp1_tb lost at column 281.
+Jun 11 17:09: TRACE - Trace of aperture 1 in 02jan2025_comp1_tb recovered at column 271.
+Jun 11 17:09: TRACE - Trace of aperture 1 in 02jan2025_comp1_tb lost at column 211.
+Jun 11 17:09: TRACE - Trace of aperture 1 in 02jan2025_comp1_tb recovered at column 201.
+Jun 11 17:09: TRACE - Trace of aperture 1 in 02jan2025_comp1_tb lost at column 191.
+Jun 11 17:09: TRACE - Trace of aperture 1 in 02jan2025_comp1_tb recovered at column 181.
+Jun 11 17:09: TRACE - Trace of aperture 1 in 02jan2025_comp1_tb lost at column 151.
+Jun 11 17:09: TRACE - Trace of aperture 1 in 02jan2025_comp1_tb recovered at column 141.
+Jun 11 17:09: TRACE - Trace of aperture 1 in 02jan2025_comp1_tb lost at column 61.
+Jun 11 17:09: TRACE - Trace of aperture 1 in 02jan2025_comp1_tb recovered at column 51.
+Jun 11 17:09: TRACE - Trace of aperture 1 in 02jan2025_comp1_tb lost at column 31.
+Jun 11 17:09: TRACE - Trace of aperture 1 in 02jan2025_comp1_tb lost at column 21.
+Jun 11 17:09: TRACE - Trace of aperture 1 in 02jan2025_comp1_tb recovered at column 11.
+Jun 11 17:09: TRACE - Trace of aperture 1 in 02jan2025_comp1_tb lost at column 1.
+Jun 11 17:09: TRACE - 1 apertures traced in 02jan2025_comp1_tb.
+Jun 11 17:09: DATABASE - 1 apertures for 02jan2025_comp1_tb written to database
+Jun 11 17:09: EXTRACT: 34 pixels rejected for profile from aperture 1
+Jun 11 17:09: EXTRACT: Aperture 1 variance spectrum bias factor is 1.000128
+Jun 11 17:09: EXTRACT: 107 pixels rejected from aperture 1
+Jun 11 17:09: EXTRACT - Aperture 1 from 02jan2025_comp1_tb --> 02jan2025_comp1_tb.ms
+Jun 11 17:09: FIND - 1 apertures found for 02jan2025_comp2_tb
+Jun 11 17:09: APRESIZE  - 1 apertures resized for 02jan2025_comp2_tb (-2.63, 2.94)
+Jun 11 17:09: EDIT - 1 apertures edited for 02jan2025_comp2_tb
+Jun 11 17:09: TRACE - Trace of aperture 1 in 02jan2025_comp2_tb lost at column 725.
+Jun 11 17:09: TRACE - Trace of aperture 1 in 02jan2025_comp2_tb lost at column 735.
+Jun 11 17:09: TRACE - Trace of aperture 1 in 02jan2025_comp2_tb recovered at column 745.
+Jun 11 17:09: TRACE - Trace of aperture 1 in 02jan2025_comp2_tb lost at column 795.
+Jun 11 17:09: TRACE - Trace of aperture 1 in 02jan2025_comp2_tb recovered at column 805.
+Jun 11 17:09: TRACE - Trace of aperture 1 in 02jan2025_comp2_tb lost at column 875.
+Jun 11 17:09: TRACE - Trace of aperture 1 in 02jan2025_comp2_tb lost at column 885.
+Jun 11 17:09: TRACE - Trace of aperture 1 in 02jan2025_comp2_tb recovered at column 895.
+Jun 11 17:09: TRACE - Trace of aperture 1 in 02jan2025_comp2_tb lost at column 1085.
+Jun 11 17:09: TRACE - Trace of aperture 1 in 02jan2025_comp2_tb recovered at column 1095.
+Jun 11 17:09: TRACE - Trace of aperture 1 in 02jan2025_comp2_tb lost at column 1125.
+Jun 11 17:09: TRACE - Trace of aperture 1 in 02jan2025_comp2_tb recovered at column 1135.
+Jun 11 17:09: TRACE - Trace of aperture 1 in 02jan2025_comp2_tb lost at column 1265.
+Jun 11 17:09: TRACE - Trace of aperture 1 in 02jan2025_comp2_tb recovered at column 1275.
+Jun 11 17:09: TRACE - Trace of aperture 1 in 02jan2025_comp2_tb lost at column 1295.
+Jun 11 17:09: TRACE - Trace of aperture 1 in 02jan2025_comp2_tb recovered at column 1305.
+Jun 11 17:09: TRACE - Trace of aperture 1 in 02jan2025_comp2_tb lost at column 641.
+Jun 11 17:09: TRACE - Trace of aperture 1 in 02jan2025_comp2_tb recovered at column 631.
+Jun 11 17:09: TRACE - Trace of aperture 1 in 02jan2025_comp2_tb lost at column 591.
+Jun 11 17:09: TRACE - Trace of aperture 1 in 02jan2025_comp2_tb recovered at column 581.
+Jun 11 17:09: TRACE - Trace of aperture 1 in 02jan2025_comp2_tb lost at column 551.
+Jun 11 17:09: TRACE - Trace of aperture 1 in 02jan2025_comp2_tb recovered at column 541.
+Jun 11 17:09: TRACE - Trace of aperture 1 in 02jan2025_comp2_tb lost at column 431.
+Jun 11 17:09: TRACE - Trace of aperture 1 in 02jan2025_comp2_tb lost at column 421.
+Jun 11 17:09: TRACE - Trace of aperture 1 in 02jan2025_comp2_tb lost at column 411.
+Jun 11 17:09: TRACE - 1 apertures traced in 02jan2025_comp2_tb.
+Jun 11 17:09: DATABASE - 1 apertures for 02jan2025_comp2_tb written to database
+Jun 11 17:09: EXTRACT: 10 pixels rejected for profile from aperture 1
+Jun 11 17:09: EXTRACT: Aperture 1 variance spectrum bias factor is 0.9978828
+Jun 11 17:09: EXTRACT: 9 pixels rejected from aperture 1
+Jun 11 17:09: EXTRACT - Aperture 1 from 02jan2025_comp2_tb --> 02jan2025_comp2_tb.ms
+Jun 11 17:10: FIND - 1 apertures found for 02jan2025_comp3_tb
+Jun 11 17:10: APRESIZE  - 1 apertures resized for 02jan2025_comp3_tb (-2.59, 1.68)
+Jun 11 17:10: EDIT - 1 apertures edited for 02jan2025_comp3_tb
+Jun 11 17:10: TRACE - Trace of aperture 1 in 02jan2025_comp3_tb lost at column 685.
+Jun 11 17:10: TRACE - Trace of aperture 1 in 02jan2025_comp3_tb lost at column 695.
+Jun 11 17:10: TRACE - Trace of aperture 1 in 02jan2025_comp3_tb recovered at column 705.
+Jun 11 17:10: TRACE - Trace of aperture 1 in 02jan2025_comp3_tb lost at column 755.
+Jun 11 17:10: TRACE - Trace of aperture 1 in 02jan2025_comp3_tb recovered at column 765.
+Jun 11 17:10: TRACE - Trace of aperture 1 in 02jan2025_comp3_tb lost at column 775.
+Jun 11 17:10: TRACE - Trace of aperture 1 in 02jan2025_comp3_tb lost at column 785.
+Jun 11 17:10: TRACE - Trace of aperture 1 in 02jan2025_comp3_tb recovered at column 795.
+Jun 11 17:10: TRACE - Trace of aperture 1 in 02jan2025_comp3_tb lost at column 895.
+Jun 11 17:10: TRACE - Trace of aperture 1 in 02jan2025_comp3_tb lost at column 905.
+Jun 11 17:10: TRACE - Trace of aperture 1 in 02jan2025_comp3_tb recovered at column 915.
+Jun 11 17:10: TRACE - Trace of aperture 1 in 02jan2025_comp3_tb lost at column 965.
+Jun 11 17:10: TRACE - Trace of aperture 1 in 02jan2025_comp3_tb recovered at column 975.
+Jun 11 17:10: TRACE - Trace of aperture 1 in 02jan2025_comp3_tb lost at column 1045.
+Jun 11 17:10: TRACE - Trace of aperture 1 in 02jan2025_comp3_tb recovered at column 1055.
+Jun 11 17:10: TRACE - Trace of aperture 1 in 02jan2025_comp3_tb lost at column 1095.
+Jun 11 17:10: TRACE - Trace of aperture 1 in 02jan2025_comp3_tb recovered at column 1105.
+Jun 11 17:10: TRACE - Trace of aperture 1 in 02jan2025_comp3_tb lost at column 1115.
+Jun 11 17:10: TRACE - Trace of aperture 1 in 02jan2025_comp3_tb recovered at column 1125.
+Jun 11 17:10: TRACE - Trace of aperture 1 in 02jan2025_comp3_tb lost at column 1145.
+Jun 11 17:10: TRACE - Trace of aperture 1 in 02jan2025_comp3_tb lost at column 1155.
+Jun 11 17:10: TRACE - Trace of aperture 1 in 02jan2025_comp3_tb lost at column 1165.
+Jun 11 17:10: TRACE - Trace of aperture 1 in 02jan2025_comp3_tb lost at column 631.
+Jun 11 17:10: TRACE - Trace of aperture 1 in 02jan2025_comp3_tb lost at column 621.
+Jun 11 17:10: TRACE - Trace of aperture 1 in 02jan2025_comp3_tb recovered at column 611.
+Jun 11 17:10: TRACE - Trace of aperture 1 in 02jan2025_comp3_tb lost at column 591.
+Jun 11 17:10: TRACE - Trace of aperture 1 in 02jan2025_comp3_tb lost at column 581.
+Jun 11 17:10: TRACE - Trace of aperture 1 in 02jan2025_comp3_tb recovered at column 571.
+Jun 11 17:10: TRACE - Trace of aperture 1 in 02jan2025_comp3_tb lost at column 541.
+Jun 11 17:10: TRACE - Trace of aperture 1 in 02jan2025_comp3_tb recovered at column 531.
+Jun 11 17:10: TRACE - Trace of aperture 1 in 02jan2025_comp3_tb lost at column 451.
+Jun 11 17:10: TRACE - Trace of aperture 1 in 02jan2025_comp3_tb recovered at column 441.
+Jun 11 17:10: TRACE - Trace of aperture 1 in 02jan2025_comp3_tb lost at column 331.
+Jun 11 17:10: TRACE - Trace of aperture 1 in 02jan2025_comp3_tb lost at column 321.
+Jun 11 17:10: TRACE - Trace of aperture 1 in 02jan2025_comp3_tb recovered at column 311.
+Jun 11 17:10: TRACE - Trace of aperture 1 in 02jan2025_comp3_tb lost at column 271.
+Jun 11 17:10: TRACE - Trace of aperture 1 in 02jan2025_comp3_tb recovered at column 261.
+Jun 11 17:10: TRACE - Trace of aperture 1 in 02jan2025_comp3_tb lost at column 181.
+Jun 11 17:10: TRACE - Trace of aperture 1 in 02jan2025_comp3_tb recovered at column 171.
+Jun 11 17:10: TRACE - Trace of aperture 1 in 02jan2025_comp3_tb lost at column 141.
+Jun 11 17:10: TRACE - Trace of aperture 1 in 02jan2025_comp3_tb recovered at column 131.
+Jun 11 17:10: TRACE - Trace of aperture 1 in 02jan2025_comp3_tb lost at column 101.
+Jun 11 17:10: TRACE - Trace of aperture 1 in 02jan2025_comp3_tb recovered at column 91.
+Jun 11 17:10: TRACE - Trace of aperture 1 in 02jan2025_comp3_tb lost at column 81.
+Jun 11 17:10: TRACE - Trace of aperture 1 in 02jan2025_comp3_tb recovered at column 71.
+Jun 11 17:10: TRACE - Trace of aperture 1 in 02jan2025_comp3_tb lost at column 61.
+Jun 11 17:10: TRACE - Trace of aperture 1 in 02jan2025_comp3_tb lost at column 51.
+Jun 11 17:10: TRACE - Trace of aperture 1 in 02jan2025_comp3_tb lost at column 41.
+Jun 11 17:10: TRACE - 1 apertures traced in 02jan2025_comp3_tb.
+Jun 11 17:10: DATABASE - 1 apertures for 02jan2025_comp3_tb written to database
+Jun 11 17:10: EXTRACT: 10 pixels rejected for profile from aperture 1
+Jun 11 17:10: EXTRACT: Aperture 1 variance spectrum bias factor is 0.9992337
+Jun 11 17:10: EXTRACT: 10 pixels rejected from aperture 1
+Jun 11 17:10: EXTRACT - Aperture 1 from 02jan2025_comp3_tb --> 02jan2025_comp3_tb.ms
+Jun 11 17:10: FIND - 1 apertures found for 02jan2025_comp4_tb
+Jun 11 17:10: APRESIZE  - 1 apertures resized for 02jan2025_comp4_tb (-2.04, 2.18)
+Jun 11 17:10: EDIT - 1 apertures edited for 02jan2025_comp4_tb
+Jun 11 17:10: TRACE - Trace of aperture 1 in 02jan2025_comp4_tb lost at column 655.
+Jun 11 17:10: TRACE - Trace of aperture 1 in 02jan2025_comp4_tb lost at column 665.
+Jun 11 17:10: TRACE - Trace of aperture 1 in 02jan2025_comp4_tb recovered at column 675.
+Jun 11 17:10: TRACE - Trace of aperture 1 in 02jan2025_comp4_tb lost at column 705.
+Jun 11 17:10: TRACE - Trace of aperture 1 in 02jan2025_comp4_tb recovered at column 715.
+Jun 11 17:10: TRACE - Trace of aperture 1 in 02jan2025_comp4_tb lost at column 745.
+Jun 11 17:10: TRACE - Trace of aperture 1 in 02jan2025_comp4_tb recovered at column 755.
+Jun 11 17:10: TRACE - Trace of aperture 1 in 02jan2025_comp4_tb lost at column 765.
+Jun 11 17:10: TRACE - Trace of aperture 1 in 02jan2025_comp4_tb recovered at column 775.
+Jun 11 17:10: TRACE - Trace of aperture 1 in 02jan2025_comp4_tb lost at column 785.
+Jun 11 17:10: TRACE - Trace of aperture 1 in 02jan2025_comp4_tb recovered at column 795.
+Jun 11 17:10: TRACE - Trace of aperture 1 in 02jan2025_comp4_tb lost at column 815.
+Jun 11 17:10: TRACE - Trace of aperture 1 in 02jan2025_comp4_tb recovered at column 825.
+Jun 11 17:10: TRACE - Trace of aperture 1 in 02jan2025_comp4_tb lost at column 835.
+Jun 11 17:10: TRACE - Trace of aperture 1 in 02jan2025_comp4_tb recovered at column 845.
+Jun 11 17:10: TRACE - Trace of aperture 1 in 02jan2025_comp4_tb lost at column 905.
+Jun 11 17:10: TRACE - Trace of aperture 1 in 02jan2025_comp4_tb lost at column 915.
+Jun 11 17:10: TRACE - Trace of aperture 1 in 02jan2025_comp4_tb recovered at column 925.
+Jun 11 17:10: TRACE - Trace of aperture 1 in 02jan2025_comp4_tb lost at column 935.
+Jun 11 17:10: TRACE - Trace of aperture 1 in 02jan2025_comp4_tb lost at column 945.
+Jun 11 17:10: TRACE - Trace of aperture 1 in 02jan2025_comp4_tb recovered at column 955.
+Jun 11 17:10: TRACE - Trace of aperture 1 in 02jan2025_comp4_tb lost at column 965.
+Jun 11 17:10: TRACE - Trace of aperture 1 in 02jan2025_comp4_tb recovered at column 975.
+Jun 11 17:10: TRACE - Trace of aperture 1 in 02jan2025_comp4_tb lost at column 985.
+Jun 11 17:10: TRACE - Trace of aperture 1 in 02jan2025_comp4_tb recovered at column 995.
+Jun 11 17:10: TRACE - Trace of aperture 1 in 02jan2025_comp4_tb lost at column 1075.
+Jun 11 17:10: TRACE - Trace of aperture 1 in 02jan2025_comp4_tb lost at column 1085.
+Jun 11 17:10: TRACE - Trace of aperture 1 in 02jan2025_comp4_tb lost at column 1095.
+Jun 11 17:10: TRACE - Trace of aperture 1 in 02jan2025_comp4_tb recovered at column 641.
+Jun 11 17:10: TRACE - Trace of aperture 1 in 02jan2025_comp4_tb lost at column 631.
+Jun 11 17:10: TRACE - Trace of aperture 1 in 02jan2025_comp4_tb recovered at column 621.
+Jun 11 17:10: TRACE - Trace of aperture 1 in 02jan2025_comp4_tb lost at column 531.
+Jun 11 17:10: TRACE - Trace of aperture 1 in 02jan2025_comp4_tb recovered at column 521.
+Jun 11 17:10: TRACE - Trace of aperture 1 in 02jan2025_comp4_tb lost at column 491.
+Jun 11 17:10: TRACE - Trace of aperture 1 in 02jan2025_comp4_tb lost at column 481.
+Jun 11 17:10: TRACE - Trace of aperture 1 in 02jan2025_comp4_tb recovered at column 471.
+Jun 11 17:10: TRACE - Trace of aperture 1 in 02jan2025_comp4_tb lost at column 441.
+Jun 11 17:10: TRACE - Trace of aperture 1 in 02jan2025_comp4_tb recovered at column 431.
+Jun 11 17:10: TRACE - Trace of aperture 1 in 02jan2025_comp4_tb lost at column 421.
+Jun 11 17:10: TRACE - Trace of aperture 1 in 02jan2025_comp4_tb lost at column 411.
+Jun 11 17:10: TRACE - Trace of aperture 1 in 02jan2025_comp4_tb lost at column 401.
+Jun 11 17:10: TRACE - 1 apertures traced in 02jan2025_comp4_tb.
+Jun 11 17:10: DATABASE - 1 apertures for 02jan2025_comp4_tb written to database
+Jun 11 17:10: EXTRACT: 50 pixels rejected for profile from aperture 1
+Jun 11 17:10: EXTRACT: Aperture 1 variance spectrum bias factor is 0.9984083
+Jun 11 17:10: EXTRACT: 49 pixels rejected from aperture 1
+Jun 11 17:10: EXTRACT - Aperture 1 from 02jan2025_comp4_tb --> 02jan2025_comp4_tb.ms
+Jun 11 17:10: FIND - 1 apertures found for 02jan2025_comp5_tb
+Jun 11 17:10: APRESIZE  - 1 apertures resized for 02jan2025_comp5_tb (-2.50, 2.92)
+Jun 11 17:11: EDIT - 1 apertures edited for 02jan2025_comp5_tb
+Jun 11 17:11: TRACE - Trace of aperture 1 in 02jan2025_comp5_tb lost at column 675.
+Jun 11 17:11: TRACE - Trace of aperture 1 in 02jan2025_comp5_tb lost at column 685.
+Jun 11 17:11: TRACE - Trace of aperture 1 in 02jan2025_comp5_tb lost at column 695.
+Jun 11 17:11: TRACE - Trace of aperture 1 in 02jan2025_comp5_tb lost at column 481.
+Jun 11 17:11: TRACE - Trace of aperture 1 in 02jan2025_comp5_tb recovered at column 471.
+Jun 11 17:11: TRACE - Trace of aperture 1 in 02jan2025_comp5_tb lost at column 441.
+Jun 11 17:11: TRACE - Trace of aperture 1 in 02jan2025_comp5_tb recovered at column 431.
+Jun 11 17:11: TRACE - Trace of aperture 1 in 02jan2025_comp5_tb lost at column 421.
+Jun 11 17:11: TRACE - Trace of aperture 1 in 02jan2025_comp5_tb recovered at column 411.
+Jun 11 17:11: TRACE - Trace of aperture 1 in 02jan2025_comp5_tb lost at column 361.
+Jun 11 17:11: TRACE - Trace of aperture 1 in 02jan2025_comp5_tb recovered at column 351.
+Jun 11 17:11: TRACE - Trace of aperture 1 in 02jan2025_comp5_tb lost at column 271.
+Jun 11 17:11: TRACE - Trace of aperture 1 in 02jan2025_comp5_tb recovered at column 261.
+Jun 11 17:11: TRACE - Trace of aperture 1 in 02jan2025_comp5_tb lost at column 251.
+Jun 11 17:11: TRACE - Trace of aperture 1 in 02jan2025_comp5_tb lost at column 241.
+Jun 11 17:11: TRACE - Trace of aperture 1 in 02jan2025_comp5_tb recovered at column 231.
+Jun 11 17:11: TRACE - Trace of aperture 1 in 02jan2025_comp5_tb lost at column 181.
+Jun 11 17:11: TRACE - Trace of aperture 1 in 02jan2025_comp5_tb recovered at column 171.
+Jun 11 17:11: TRACE - Trace of aperture 1 in 02jan2025_comp5_tb lost at column 121.
+Jun 11 17:11: TRACE - Trace of aperture 1 in 02jan2025_comp5_tb recovered at column 111.
+Jun 11 17:11: TRACE - Trace of aperture 1 in 02jan2025_comp5_tb lost at column 21.
+Jun 11 17:11: TRACE - Trace of aperture 1 in 02jan2025_comp5_tb recovered at column 11.
+Jun 11 17:11: TRACE - 1 apertures traced in 02jan2025_comp5_tb.
+Jun 11 17:11: DATABASE - 1 apertures for 02jan2025_comp5_tb written to database
+Jun 11 17:11: EXTRACT: 52 pixels rejected for profile from aperture 1
+Jun 11 17:11: EXTRACT: Aperture 1 variance spectrum bias factor is 0.996305
+Jun 11 17:11: EXTRACT: 50 pixels rejected from aperture 1
+Jun 11 17:11: EXTRACT - Aperture 1 from 02jan2025_comp5_tb --> 02jan2025_comp5_tb.ms
+Jun 11 17:11: FIND - 1 apertures found for 02jan2025_comp6_tb
+Jun 11 17:11: APRESIZE  - 1 apertures resized for 02jan2025_comp6_tb (-1.15, 1.57)
+Jun 11 17:11: EDIT - 1 apertures edited for 02jan2025_comp6_tb
+Jun 11 17:11: TRACE - Trace of aperture 1 in 02jan2025_comp6_tb lost at column 675.
+Jun 11 17:11: TRACE - Trace of aperture 1 in 02jan2025_comp6_tb recovered at column 685.
+Jun 11 17:11: TRACE - Trace of aperture 1 in 02jan2025_comp6_tb lost at column 705.
+Jun 11 17:11: TRACE - Trace of aperture 1 in 02jan2025_comp6_tb recovered at column 715.
+Jun 11 17:11: TRACE - Trace of aperture 1 in 02jan2025_comp6_tb lost at column 775.
+Jun 11 17:11: TRACE - Trace of aperture 1 in 02jan2025_comp6_tb recovered at column 785.
+Jun 11 17:11: TRACE - Trace of aperture 1 in 02jan2025_comp6_tb lost at column 895.
+Jun 11 17:11: TRACE - Trace of aperture 1 in 02jan2025_comp6_tb recovered at column 905.
+Jun 11 17:11: TRACE - Trace of aperture 1 in 02jan2025_comp6_tb lost at column 925.
+Jun 11 17:11: TRACE - Trace of aperture 1 in 02jan2025_comp6_tb lost at column 935.
+Jun 11 17:11: TRACE - Trace of aperture 1 in 02jan2025_comp6_tb recovered at column 945.
+Jun 11 17:11: TRACE - Trace of aperture 1 in 02jan2025_comp6_tb lost at column 965.
+Jun 11 17:11: TRACE - Trace of aperture 1 in 02jan2025_comp6_tb recovered at column 975.
+Jun 11 17:11: TRACE - Trace of aperture 1 in 02jan2025_comp6_tb lost at column 1025.
+Jun 11 17:11: TRACE - Trace of aperture 1 in 02jan2025_comp6_tb recovered at column 1035.
+Jun 11 17:11: TRACE - Trace of aperture 1 in 02jan2025_comp6_tb lost at column 1085.
+Jun 11 17:11: TRACE - Trace of aperture 1 in 02jan2025_comp6_tb recovered at column 1095.
+Jun 11 17:11: TRACE - Trace of aperture 1 in 02jan2025_comp6_tb lost at column 1115.
+Jun 11 17:11: TRACE - Trace of aperture 1 in 02jan2025_comp6_tb recovered at column 1125.
+Jun 11 17:11: TRACE - Trace of aperture 1 in 02jan2025_comp6_tb lost at column 1145.
+Jun 11 17:11: TRACE - Trace of aperture 1 in 02jan2025_comp6_tb lost at column 1155.
+Jun 11 17:11: TRACE - Trace of aperture 1 in 02jan2025_comp6_tb lost at column 1165.
+Jun 11 17:11: TRACE - Trace of aperture 1 in 02jan2025_comp6_tb lost at column 631.
+Jun 11 17:11: TRACE - Trace of aperture 1 in 02jan2025_comp6_tb recovered at column 621.
+Jun 11 17:11: TRACE - Trace of aperture 1 in 02jan2025_comp6_tb lost at column 591.
+Jun 11 17:11: TRACE - Trace of aperture 1 in 02jan2025_comp6_tb recovered at column 581.
+Jun 11 17:11: TRACE - Trace of aperture 1 in 02jan2025_comp6_tb lost at column 551.
+Jun 11 17:11: TRACE - Trace of aperture 1 in 02jan2025_comp6_tb recovered at column 541.
+Jun 11 17:11: TRACE - Trace of aperture 1 in 02jan2025_comp6_tb lost at column 461.
+Jun 11 17:11: TRACE - Trace of aperture 1 in 02jan2025_comp6_tb lost at column 451.
+Jun 11 17:11: TRACE - Trace of aperture 1 in 02jan2025_comp6_tb recovered at column 441.
+Jun 11 17:11: TRACE - Trace of aperture 1 in 02jan2025_comp6_tb lost at column 411.
+Jun 11 17:11: TRACE - Trace of aperture 1 in 02jan2025_comp6_tb recovered at column 401.
+Jun 11 17:11: TRACE - Trace of aperture 1 in 02jan2025_comp6_tb lost at column 371.
+Jun 11 17:11: TRACE - Trace of aperture 1 in 02jan2025_comp6_tb recovered at column 361.
+Jun 11 17:11: TRACE - Trace of aperture 1 in 02jan2025_comp6_tb lost at column 291.
+Jun 11 17:11: TRACE - Trace of aperture 1 in 02jan2025_comp6_tb recovered at column 281.
+Jun 11 17:11: TRACE - Trace of aperture 1 in 02jan2025_comp6_tb lost at column 261.
+Jun 11 17:11: TRACE - Trace of aperture 1 in 02jan2025_comp6_tb lost at column 251.
+Jun 11 17:11: TRACE - Trace of aperture 1 in 02jan2025_comp6_tb lost at column 241.
+Jun 11 17:11: TRACE - 1 apertures traced in 02jan2025_comp6_tb.
+Jun 11 17:11: DATABASE - 1 apertures for 02jan2025_comp6_tb written to database
+Jun 11 17:11: EXTRACT: 70 pixels rejected for profile from aperture 1
+Jun 11 17:11: EXTRACT: Aperture 1 variance spectrum bias factor is 0.9972915
+Jun 11 17:11: EXTRACT: 72 pixels rejected from aperture 1
+Jun 11 17:11: EXTRACT - Aperture 1 from 02jan2025_comp6_tb --> 02jan2025_comp6_tb.ms
