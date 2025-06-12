@@ -10,7 +10,8 @@ import itertools
 # Change the current working directory to the one that has data
 
 print("Current working directory:{0}".format(os.getcwd()))
-os.chdir('/home/luciferat022/Documents/GitHub/VBT_Data_Reduction_Pipeline/02jan2025') # To where the data is located
+directory = input("Enter the path to directory where the data is located:")
+os.chdir(directory) # To where the data is located
 print("Working directory changed to:{0}".format(os.getcwd()))
 
 
@@ -72,20 +73,24 @@ iraf.specred(_doprint = 0)
 
 # Changing the Pixel Type
 
+print("\n Pixel type being changed to 'ushort'...")
 iraf.chpixtype.setParam('input','*.fits')
 iraf.chpixtype.setParam('output','*.fits')
 iraf.chpixtype.setParam('newpixtype','ushort')
 iraf.chpixtype.setParam('oldpixtype','all')
 iraf.chpixtype.setParam('verbose','yes')
 iraf.chpixtype()
+print("\nSuccessfully changed the pixel type!")
 
 # Changing the Dispersion Axis
 
+print("\n Dispersion axis being updated to '1'...")
 iraf.ccdhedit.setParam('images','*.fits')
 iraf.ccdhedit.setParam('parameter','DISPAXIS')
 iraf.ccdhedit.setParam('value','1')
 iraf.ccdhedit.setParam('type','string')
 iraf.ccdhedit()
+print("\n Dispersion Axis update successful!")
 
 # Creating list of files
 
@@ -106,6 +111,7 @@ with open ('all_t', 'w') as all_t:
 
 # Trimming and Removing Bad Pixels
 
+print("\n Unwanted regions in the frame are being trimmed...")
 iraf.ccdproc.setParam('images','@all')
 iraf.ccdproc.setParam('output','@all_t')
 iraf.ccdproc.setParam('trim','yes')
@@ -116,6 +122,7 @@ iraf.ccdproc.setParam('biassec','image')
 iraf.ccdproc.setParam('trimsec','[15:1325, 15:385]') 
 
 iraf.ccdproc()
+print("\nTrimmed successfully!")
 
 # Getting Files Ready for Bias Correction
 
@@ -135,16 +142,20 @@ with open('bs.in', 'r') as f_in, open('bs.out', 'w') as f_out:
 
 # Removing Bad Bias Frames
 
+print("\nRemove bias file names based on image statistics:")
 iraf.imstat.setParam('images','@bias.in')
 iraf.imstat()
 input('Press Enter to Continue...')
 
 # Bias list editing
+
 var1 = 'bias.in'
 os.system('gedit '+var1)
+print("\nUpdated bias files for zerocombine successfully!")
 
 # Creating Master Bias Frame
 
+print("\nMaster Bias being created...")
 iraf.zerocombine.setParam('input','@bias.in')
 iraf.zerocombine.setParam('output','master_bias.fits')
 iraf.zerocombine.setParam('combine','average')
@@ -154,9 +165,12 @@ iraf.zerocombine.setParam('rdnoise','4.8')
 iraf.zerocombine.setParam('gain','1.22')
 
 iraf.zerocombine()
+print("\nMaster Bias created successfully")
+iraf.imstat('images','master_bias.fits')
 
 # Bias Correction
 
+print("Subtracting masterbias from other frames...")
 iraf.ccdproc.setParam('images','@bs.in')
 iraf.ccdproc.setParam('output','@bs.out')
 iraf.ccdproc.setParam('trim','no')
@@ -165,6 +179,7 @@ iraf.ccdproc.setParam('flatcor','no')
 iraf.ccdproc.setParam('zero','master_bias.fits')
 
 iraf.ccdproc()
+print("\nBias subtraction successful!")
 
 # Getting Files Ready for Flat Correction
 
@@ -184,15 +199,20 @@ with open('flatf.in', 'r') as f_in, open('flatf.out', 'w') as f_out:
 
 # Removing Bad Flat Frames
 
+print("\nRemove flat file names based on image statistics:")
 iraf.imstat.setParam('images','@flat.in')
 iraf.imstat()
 input('Press Enter to Continue...')
 
-# Bias list editing
+# Flat list editing
+
 var2 = 'flat.in'
 os.system('gedit '+var2)
+print("\nUpdated flat files for zerocombine successfully!")
 
 # Creating Master Flat Frame
+
+print("\nMaster Flat being created...")
 iraf.flatcombine.setParam('input','@flat.in')
 iraf.flatcombine.setParam('output','master_flat.fits')
 iraf.flatcombine.setParam('combine','average')
@@ -202,9 +222,11 @@ iraf.flatcombine.setParam('rdnoise','4.8')
 iraf.flatcombine.setParam('gain','1.22')
 
 iraf.flatcombine()
+print("\nMaster Flat created successfully")
 
 # Normalised Flat Frame 
 
+print("\nCreating Normalized Flat frame...")
 iraf.response.setParam('calibration','master_flat.fits')
 iraf.response.setParam('normalization','master_flat.fits')
 iraf.response.setParam('response','nmaster_flat.fits')
@@ -215,10 +237,11 @@ iraf.response.setParam('function','spline3')
 iraf.response.setParam('order','3')
 
 iraf.response()
-
+print("\nNormalized Flat Frame created successfully!")
 
 # Flat Correction
 
+print("Flat-fielding the star frames...")
 iraf.ccdproc.setParam('images','@flatf.in')
 iraf.ccdproc.setParam('output','@flatf.out')
 iraf.ccdproc.setParam('trim','no')
@@ -227,9 +250,11 @@ iraf.ccdproc.setParam('flatcor','yes')
 iraf.ccdproc.setParam('flat','nmaster_flat.fits')
 
 iraf.ccdproc()
+print("Flat-fielded the star frames successfully!")
 
 # Extracting the Aperture of Star Frames
 
+print("Aperture extraction:")
 iraf.apall.setParam('nfind','1')
 iraf.apall.setParam('background','median')
 iraf.apall.setParam('weights','variance')
@@ -240,23 +265,39 @@ iraf.apall.setParam('gain','1.22')
 
 for pattern in ['*obj*tbf.fits','*comp*tb.fits']:
     for file in sorted(glob.glob(pattern)):
-        prompt = 'yes'
-        while prompt=='yes':
+        prompt_apall = 'yes'
+        while prompt_apall=='yes':
+            print("\nAperture extraction for "+str(file))
             iraf.apall.setParam('input', file)
             iraf.apall()  
-            prompt = input('Do you want to reselect aperture? (yes/no):')
+            prompt_apall = input('\nDo you want to reselect aperture? (yes/no):')
 
 # Line Identification
 
 for x in glob.glob('*tb.ms*'):
-    iraf.identify(images=x) 
+    prompt_line = 'yes'
+    while prompt_line == 'yes':
+        print("\nLine identification for "+str(x))
+        iraf.identify(images=x) 
+        prompt_line = input("\nDo you want to continue?(yes/no):")
 
 # Mapping reference spectral lines to star frames
 
 for x in glob.glob('*tbf.ms*'):
-    iraf.refspectra.eParam()
+    prompt_ref = 'yes'
+    while prompt_ref == 'yes':
+        print("\nReferencing spectra for "+str(x))
+        iraf.refspectra.eParam()
+        prompt_line = input("\nDo you want to continue?(yes/no):")
 
 # Dispersion correction (or) Wavelength Calibration
+
+print("Performing Dispersion Correction for selected files...")
+
+var3 = 'disp.in'
+os.system('gedit '+var3)
+print("File ")
+print("\nUpdated successfully!")
 
 with open('disp.in', 'w') as d_out:
     for pattern in ['*comp*ms*','*obj*ms*']:
@@ -273,6 +314,8 @@ iraf.dispcor()
 
 # Normalizing the Reduced Spectra
 
+print("Normalizing the reduced spectra...")
+
 with open('final.in', 'w') as final_out:
     for pattern in ['*obj*tbfw.ms*']:
         for file in sorted(glob.glob(pattern)):
@@ -280,7 +323,7 @@ with open('final.in', 'w') as final_out:
 
 with open('final.in', 'r') as final_in, open('final.out', 'w') as final_out:
     for line in final_in:
-        d_out.write(line.replace('tbfw.ms.fits', 'c.fits'))
+        final_out.write(line.replace('tbfw.ms.fits', 'c.fits'))
 
 iraf.continuum.setParam('input','@final.in')
 iraf.continuum.setParam('output','@final.out')

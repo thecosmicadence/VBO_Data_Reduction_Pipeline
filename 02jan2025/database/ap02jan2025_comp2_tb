@@ -1,9 +1,9 @@
-# Wed 17:09:47 11-Jun-2025
-begin	aperture 02jan2025_comp2_tb 1 655. 257.9472
+# Thu 07:27:22 12-Jun-2025
+begin	aperture 02jan2025_comp2_tb 1 655. 259.075
 	image	02jan2025_comp2_tb
 	aperture	1
 	beam	1
-	center	655. 257.9472
+	center	655. 259.075
 	low	-654. -2.632172
 	high	656. 2.939209
 	background
@@ -24,9 +24,9 @@ begin	aperture 02jan2025_comp2_tb 1 655. 257.9472
 		1.
 		1311.
 		0.
-		-19.90903
-		3.181661
-		-2.779905
-		1.532587
-		-8.573724
+		-20.09701
+		2.993702
+		-2.967871
+		1.344627
+		-8.761699
 
