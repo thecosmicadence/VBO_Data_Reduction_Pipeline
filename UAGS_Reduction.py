@@ -4,9 +4,8 @@ import astropy.io.fits as pyfits
 from pyraf import iraf
 import os 
 import glob 
-import fnmatch 
-import itertools
 import shutil
+import pyds9
 
 # Change the current working directory to the one that has data
 
@@ -16,11 +15,17 @@ os.chdir(directory) # To where the data is located
 print("Working directory changed to:{0}".format(os.getcwd()))
 
 # Obtaining the Read Noise and Gain information from Header
+# To specify the region of trimming
 
-x = glob.glob('*obj*.fits')
+x = sort(glob.glob('*obj*.fits'))
+print(x[0])
 hdulist = pyfits.open(x[0])
 readnoise = hdulist[0].header['RDNOISE']
 gain = hdulist[0].header['GAIN']
+
+d = pyds9.DS9()
+d.set('file '+str(x[0]))
+x1, x2, y1, y2 = map(int, input("Enter the coordinates (x1 x2 y1 y2) to be trimmed: ").split())
 hdulist.close()
 
 
@@ -123,6 +128,7 @@ with open ('all_t', 'w') as all_t:
 
 # Trimming and Removing Bad Pixels
 
+trimmed = f"[{x1}:{x2},{y1}:{y2}]"
 print("\n Unwanted regions in the frame are being trimmed...")
 iraf.ccdproc.setParam('images','@all')
 iraf.ccdproc.setParam('output','@all_t')
@@ -131,7 +137,7 @@ iraf.ccdproc.setParam('zerocor','no')
 iraf.ccdproc.setParam('flatcor','no')
 iraf.ccdproc.setParam('fixfile','badpix')
 iraf.ccdproc.setParam('biassec','image')
-iraf.ccdproc.setParam('trimsec','[15:1325, 15:385]') 
+iraf.ccdproc.setParam('trimsec', trimmed) 
 
 iraf.ccdproc()
 print("\nTrimmed successfully!")
@@ -300,8 +306,8 @@ prompt_ref = 'yes'
 for x in sorted(glob.glob('*tb.ms*')):
     if prompt_ref.lower() != 'yes':  # Check if user wants to stop
         break
-    print("\nLine identification for "+str(x))
-    iraf.identify(images=x) 
+    print("\nReferring comparison spectra to "+str(x))
+    iraf.refspectra(images=x) 
     prompt_ref = input("\nDo you want to continue?(yes/no):")
 
 # Dispersion correction (or) Wavelength Calibration
