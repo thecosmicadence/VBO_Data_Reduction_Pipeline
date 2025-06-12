@@ -6,6 +6,7 @@ import os
 import glob 
 import fnmatch 
 import itertools
+import shutil
 
 # Change the current working directory to the one that has data
 
@@ -13,6 +14,14 @@ print("Current working directory:{0}".format(os.getcwd()))
 directory = input("Enter the path to directory where the data is located:")
 os.chdir(directory) # To where the data is located
 print("Working directory changed to:{0}".format(os.getcwd()))
+
+# Obtaining the Read Noise and Gain information from Header
+
+x = glob.glob('*obj*.fits')
+hdulist = pyfits.open(x[0])
+readnoise = hdulist[0].header['RDNOISE']
+gain = hdulist[0].header['GAIN']
+hdulist.close()
 
 
 # To remove existing logfiles 
@@ -34,6 +43,7 @@ for x in glob.glob('*.ms.fits'):
 
 for x in glob.glob('*c.fits'):
     os.remove(x)
+
 
 for file in sorted(os.listdir()):
     if (os.path.exists("all")):
@@ -62,6 +72,8 @@ for file in sorted(os.listdir()):
         os.remove('final.in')
     elif (os.path.exists('final.out')):
         os.remove('final.out')
+    elif os.path.exists('database'):  # New condition for directory
+        shutil.rmtree('database')  
 
 # Initializing required IRAF packages
 
@@ -161,12 +173,12 @@ iraf.zerocombine.setParam('output','master_bias.fits')
 iraf.zerocombine.setParam('combine','average')
 iraf.zerocombine.setParam('reject','minmax')
 iraf.zerocombine.setParam('ccdtype','zero')
-iraf.zerocombine.setParam('rdnoise','4.8')
-iraf.zerocombine.setParam('gain','1.22')
+iraf.zerocombine.setParam('rdnoise',readnoise)
+iraf.zerocombine.setParam('gain',gain)
 
 iraf.zerocombine()
 print("\nMaster Bias created successfully")
-iraf.imstat('images','master_bias.fits')
+iraf.imstat('master_bias.fits')
 
 # Bias Correction
 
@@ -218,8 +230,8 @@ iraf.flatcombine.setParam('output','master_flat.fits')
 iraf.flatcombine.setParam('combine','average')
 iraf.flatcombine.setParam('reject','avsigclip')
 iraf.flatcombine.setParam('ccdtype','flat')
-iraf.flatcombine.setParam('rdnoise','4.8')
-iraf.flatcombine.setParam('gain','1.22')
+iraf.flatcombine.setParam('rdnoise',readnoise)
+iraf.flatcombine.setParam('gain',gain)
 
 iraf.flatcombine()
 print("\nMaster Flat created successfully")
@@ -260,8 +272,8 @@ iraf.apall.setParam('background','median')
 iraf.apall.setParam('weights','variance')
 iraf.apall.setParam('clean','yes')
 iraf.apall.setParam('saturation','60000')
-iraf.apall.setParam('readnoise','4.8')
-iraf.apall.setParam('gain','1.22')
+iraf.apall.setParam('readnoise',readnoise)
+iraf.apall.setParam('gain',gain)
 
 for pattern in ['*obj*tbf.fits','*comp*tb.fits']:
     for file in sorted(glob.glob(pattern)):
@@ -270,34 +282,31 @@ for pattern in ['*obj*tbf.fits','*comp*tb.fits']:
             print("\nAperture extraction for "+str(file))
             iraf.apall.setParam('input', file)
             iraf.apall()  
-            prompt_apall = input('\nDo you want to reselect aperture? (yes/no):')
+            prompt_apall = input('\nDo you want to reselect aperture for current file? (yes/no):')
 
-# Line Identification
+# Line Identification 
 
-for x in glob.glob('*tb.ms*'):
-    prompt_line = 'yes'
-    while prompt_line == 'yes':
-        print("\nLine identification for "+str(x))
-        iraf.identify(images=x) 
-        prompt_line = input("\nDo you want to continue?(yes/no):")
+prompt_line = 'yes'
+for x in sorted(glob.glob('*tb.ms*')):
+    if prompt_line.lower() != 'yes':  # Check if user wants to stop
+        break
+    print("\nLine identification for "+str(x))
+    iraf.identify(images=x) 
+    prompt_line = input("\nDo you want to continue?(yes/no):")
 
 # Mapping reference spectral lines to star frames
 
-for x in glob.glob('*tbf.ms*'):
-    prompt_ref = 'yes'
-    while prompt_ref == 'yes':
-        print("\nReferencing spectra for "+str(x))
-        iraf.refspectra.eParam()
-        prompt_line = input("\nDo you want to continue?(yes/no):")
+prompt_ref = 'yes'
+for x in sorted(glob.glob('*tb.ms*')):
+    if prompt_ref.lower() != 'yes':  # Check if user wants to stop
+        break
+    print("\nLine identification for "+str(x))
+    iraf.identify(images=x) 
+    prompt_ref = input("\nDo you want to continue?(yes/no):")
 
 # Dispersion correction (or) Wavelength Calibration
 
 print("Performing Dispersion Correction for selected files...")
-
-var3 = 'disp.in'
-os.system('gedit '+var3)
-print("File ")
-print("\nUpdated successfully!")
 
 with open('disp.in', 'w') as d_out:
     for pattern in ['*comp*ms*','*obj*ms*']:
@@ -307,6 +316,12 @@ with open('disp.in', 'w') as d_out:
 with open('disp.in', 'r') as d_in, open('disp.out', 'w') as d_out:
     for line in d_in:
         d_out.write(line.replace('.ms.fits', 'w.ms.fits'))
+
+var3 = 'disp.in'
+os.system('gedit '+var3)
+var4 = 'disp.out'
+os.system('gedit '+var4)
+print("\nUpdated successfully!")
 
 iraf.dispcor.setParam('input','@disp.in')
 iraf.dispcor.setParam('output','@disp.out')

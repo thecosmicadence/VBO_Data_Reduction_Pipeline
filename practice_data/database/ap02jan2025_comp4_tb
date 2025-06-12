@@ -1,0 +1,32 @@
+# Thu 12:52:03 12-Jun-2025
+begin	aperture 02jan2025_comp4_tb 1 655. 256.931
+	image	02jan2025_comp4_tb
+	aperture	1
+	beam	1
+	center	655. 256.931
+	low	-654. -5.
+	high	656. 5.
+	background
+		xmin -10.
+		xmax 10.
+		function chebyshev
+		order 1
+		sample -10:-6,6:10
+		naverage -3
+		niterate 0
+		low_reject 3.
+		high_reject 3.
+		grow 0.
+	axis	2
+	curve	10
+		3.
+		3.
+		1.
+		1311.
+		0.
+		-8.057827
+		0.9748706
+		-0.4771442
+		0.3768486
+		45.03083
+
