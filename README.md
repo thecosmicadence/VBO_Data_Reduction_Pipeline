@@ -7,7 +7,6 @@ This repository contains a semi-automated data reduction pipeline tailored for t
 - Batch support for:
   - Bias subtraction
   - Flat field correction
-  - Cosmic ray cleaning
   - Trimming based on user input
 - Header-based gain and readnoise extraction
 - Interactive aperture extraction
