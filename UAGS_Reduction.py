@@ -14,21 +14,6 @@ directory = input("Enter the path to directory where the data is located:")
 os.chdir(directory) # To where the data is located
 print("Working directory changed to:{0}".format(os.getcwd()))
 
-# Obtaining the Read Noise and Gain information from Header
-# To specify the region of trimming
-
-x = sort(glob.glob('*obj*.fits'))
-print(x[0])
-hdulist = pyfits.open(x[0])
-readnoise = hdulist[0].header['RDNOISE']
-gain = hdulist[0].header['GAIN']
-
-d = pyds9.DS9()
-d.set('file '+str(x[0]))
-x1, x2, y1, y2 = map(int, input("Enter the coordinates (x1 x2 y1 y2) to be trimmed: ").split())
-hdulist.close()
-
-
 # To remove existing logfiles 
 
 for x in glob.glob('*_t*'):
@@ -79,6 +64,47 @@ for file in sorted(os.listdir()):
         os.remove('final.out')
     elif os.path.exists('database'):  # New condition for directory
         shutil.rmtree('database')  
+
+# Sorting files based on IMAGETYP ; Obtaining the Read Noise and Gain information from Header
+
+obj = []
+bias = []
+comp = []
+dft = []
+x = sorted(glob.glob('*.fits'))
+index = 0
+
+print("\nObtaining the Read Noise and Gain information from Header...")
+
+for i in range(len(x)):
+    hdulist = pyfits.open(x[i])
+    if hdulist[0].header['IMAGETYP'] == 'object':
+        readnoise = hdulist[0].header['RDNOISE']
+        gain = hdulist[0].header['GAIN']
+        index = i
+        obj.append(x[i])   # append filename
+    elif hdulist[0].header['IMAGETYP'] == 'zero':
+        bias.append(x[i])  # append filename
+    elif hdulist[0].header['IMAGETYP'] == 'comp':
+        comp.append(x[i])  # append filename
+    elif hdulist[0].header['IMAGETYP'] == 'flat':
+        dft.append(x[i])   # append filename
+    hdulist.close()
+    
+
+print("\nBias Frames:", bias)
+print("\nObject Frames:", obj)
+print("\nComparison Frames:", comp)
+print("\nFlat Frames:", dft)
+
+# To specify the region of trimming
+
+print("\nPlease examine the image and specify the region to be trimmed")
+hdulist = pyfits.open(x[index])
+d = pyds9.DS9()
+d.set('file '+str(x[index]))
+x1, x2, y1, y2 = map(int, input("Enter the coordinates (x1 x2 y1 y2) to be trimmed: ").split())
+hdulist.close()
 
 # Initializing required IRAF packages
 
@@ -142,21 +168,29 @@ iraf.ccdproc.setParam('trimsec', trimmed)
 iraf.ccdproc()
 print("\nTrimmed successfully!")
 
+bias = [f.replace('.fits', '_t.fits') for f in bias]
+obj  = [f.replace('.fits', '_t.fits') for f in obj]
+comp = [f.replace('.fits', '_t.fits') for f in comp]
+dft  = [f.replace('.fits', '_t.fits') for f in dft]
+
+print("\nBias Frames after trimming:", bias)
+print("\nObject Frames after trimming:", obj)
+print("\nComparison Frames after trimming:", comp)
+print("\nFlat Frames after trimming:", dft)
+
 # Getting Files Ready for Bias Correction
 
-files = sorted(glob.glob('*bias*t.fits'))
+with open('bias.in', 'w') as b:
+    for file in sorted([f for f in bias if f.endswith('_t.fits')]):
+        b.write(file + os.linesep)
 
-with open('bias.in', 'w') as bias:
-    bias.write(os.linesep.join(files))
+with open('bs.in', 'w') as b_out:
+    for file in sorted([f for f in (obj + comp + dft) if f.endswith('_t.fits')]):
+        b_out.write(file + os.linesep)
 
-with open('bs.in', 'w') as f_out:
-    for pattern in ['*obj*t.fits', '*comp*t.fits', '*dft*t.fits']:
-        for file in sorted(glob.glob(pattern)):
-            f_out.write(file + os.linesep)
-
-with open('bs.in', 'r') as f_in, open('bs.out', 'w') as f_out:
-    for line in f_in:
-        f_out.write(line.replace('.fits', 'b.fits'))
+with open('bs.in', 'r') as b_in, open('bs.out', 'w') as b_out:
+    for line in b_in:
+        b_out.write(line.strip().replace('.fits', 'b.fits') + os.linesep)
 
 # Removing Bad Bias Frames
 
@@ -164,6 +198,8 @@ print("\nRemove bias file names based on image statistics:")
 iraf.imstat.setParam('images','@bias.in')
 iraf.imstat()
 input('Press Enter to Continue...')
+print("\nPlease edit the bias.in file to remove bad bias frames."
+      " After editing, save and close the file to continue.")
 
 # Bias list editing
 
@@ -199,21 +235,23 @@ iraf.ccdproc.setParam('zero','master_bias.fits')
 iraf.ccdproc()
 print("\nBias subtraction successful!")
 
+obj  = [f.replace('.fits', 'b.fits') for f in obj]
+comp = [f.replace('.fits', 'b.fits') for f in comp]
+dft  = [f.replace('.fits', 'b.fits') for f in dft]
+
 # Getting Files Ready for Flat Correction
 
-files = sorted(glob.glob('*dft*tb.fits'))
-
 with open('flat.in', 'w') as flat:
-    flat.write(os.linesep.join(files))
+    for file in sorted([f for f in dft if f.endswith('tb.fits')]):
+        flat.write(file + os.linesep)
 
 with open('flatf.in', 'w') as f_out:
-    for pattern in ['*obj*tb.fits']:
-        for file in sorted(glob.glob(pattern)):
-            f_out.write(file + os.linesep)
+    for file in sorted([f for f in obj if f.endswith('tb.fits')]):
+        f_out.write(file + os.linesep)
 
 with open('flatf.in', 'r') as f_in, open('flatf.out', 'w') as f_out:
     for line in f_in:
-        f_out.write(line.replace('.fits', 'f.fits'))
+        f_out.write(line.strip().replace('.fits', 'f.fits') + os.linesep)
 
 # Removing Bad Flat Frames
 
@@ -221,6 +259,8 @@ print("\nRemove flat file names based on image statistics:")
 iraf.imstat.setParam('images','@flat.in')
 iraf.imstat()
 input('Press Enter to Continue...')
+print("\nPlease edit the flat.in file to remove bad flat frames."
+      " After editing, save and close the file to continue.")
 
 # Flat list editing
 
@@ -259,7 +299,7 @@ print("\nNormalized Flat Frame created successfully!")
 
 # Flat Correction
 
-print("Flat-fielding the star frames...")
+print("\nFlat-fielding the star frames...")
 iraf.ccdproc.setParam('images','@flatf.in')
 iraf.ccdproc.setParam('output','@flatf.out')
 iraf.ccdproc.setParam('trim','no')
@@ -268,11 +308,13 @@ iraf.ccdproc.setParam('flatcor','yes')
 iraf.ccdproc.setParam('flat','nmaster_flat.fits')
 
 iraf.ccdproc()
-print("Flat-fielded the star frames successfully!")
+print("\nFlat-fielded the star frames successfully!")
+
+obj  = [f.replace('.fits', 'f.fits') for f in obj]
 
 # Extracting the Aperture of Star Frames
 
-print("Aperture extraction:")
+print("\nAperture extraction:")
 iraf.apall.setParam('nfind','1')
 iraf.apall.setParam('background','median')
 iraf.apall.setParam('weights','variance')
@@ -281,19 +323,26 @@ iraf.apall.setParam('saturation','60000')
 iraf.apall.setParam('readnoise',readnoise)
 iraf.apall.setParam('gain',gain)
 
-for pattern in ['*obj*tbf.fits','*comp*tb.fits']:
-    for file in sorted(glob.glob(pattern)):
-        prompt_apall = 'yes'
-        while prompt_apall=='yes':
-            print("\nAperture extraction for "+str(file))
-            iraf.apall.setParam('input', file)
-            iraf.apall()  
-            prompt_apall = input('\nDo you want to reselect aperture for current file? (yes/no):')
+for file in sorted([f for f in obj if f.endswith('tbf.fits')] + [f for f in comp if f.endswith('tb.fits')]):
+    prompt_apall = 'yes'
+    while prompt_apall == 'yes':
+        print("\nAperture extraction for " + str(file))
+        iraf.apall.setParam('input', file)
+        iraf.apall()
+        prompt_apall = input('\nDo you want to reselect aperture for current file? (yes/no):')
+
+obj  = [f.replace('.fits', '.ms.fits') for f in obj]
+comp  = [f.replace('.fits', '.ms.fits') for f in comp]
 
 # Line Identification 
 
+tb_ms_files = sorted(
+    [f for f in obj if 'tbf.ms' in f] +
+    [f for f in comp if 'tb.ms' in f]
+)
+
 prompt_line = 'yes'
-for x in sorted(glob.glob('*tb.ms*')):
+for x in comp:
     if prompt_line.lower() != 'yes':  # Check if user wants to stop
         break
     print("\nLine identification for "+str(x))
@@ -303,25 +352,27 @@ for x in sorted(glob.glob('*tb.ms*')):
 # Mapping reference spectral lines to star frames
 
 prompt_ref = 'yes'
-for x in sorted(glob.glob('*tb.ms*')):
+reference_file = input("Enter the reference spectrum filename: ")
+
+for x in obj:
     if prompt_ref.lower() != 'yes':  # Check if user wants to stop
         break
-    print("\nReferring comparison spectra to "+str(x))
-    iraf.refspectra(images=x) 
+    iraf.refspectra.setParam('input', x)
+    iraf.refspectra.setParam('references', reference_file)
+    iraf.refspectra()
     prompt_ref = input("\nDo you want to continue?(yes/no):")
 
 # Dispersion correction (or) Wavelength Calibration
 
-print("Performing Dispersion Correction for selected files...")
+print("\nPerforming Dispersion Correction for selected files...")
 
 with open('disp.in', 'w') as d_out:
-    for pattern in ['*comp*ms*','*obj*ms*']:
-        for file in sorted(glob.glob(pattern)):
-            d_out.write(file + os.linesep)
+    for file in tb_ms_files:
+        d_out.write(file + os.linesep)
 
 with open('disp.in', 'r') as d_in, open('disp.out', 'w') as d_out:
     for line in d_in:
-        d_out.write(line.replace('.ms.fits', 'w.ms.fits'))
+        d_out.write(line.strip().replace('.ms.fits', 'w.ms.fits') + os.linesep)
 
 var3 = 'disp.in'
 os.system('gedit '+var3)
@@ -333,14 +384,15 @@ iraf.dispcor.setParam('input','@disp.in')
 iraf.dispcor.setParam('output','@disp.out')
 iraf.dispcor()
 
+obj  = [f.replace('.ms.fits', 'w.ms.fits') for f in obj]
+
 # Normalizing the Reduced Spectra
 
-print("Normalizing the reduced spectra...")
+print("\nNormalizing the reduced spectra...")
 
 with open('final.in', 'w') as final_out:
-    for pattern in ['*obj*tbfw.ms*']:
-        for file in sorted(glob.glob(pattern)):
-            final_out.write(file + os.linesep)
+    for file in sorted([f for f in obj if 'tbfw.ms' in f]):
+        final_out.write(file + os.linesep)
 
 with open('final.in', 'r') as final_in, open('final.out', 'w') as final_out:
     for line in final_in:
